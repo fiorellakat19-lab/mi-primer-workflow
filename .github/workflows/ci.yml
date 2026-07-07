@@ -46,3 +46,18 @@ jobs:
       # PASO 5: Mensaje de éxito
       - name: ✅ Pipeline completado
         run: echo "🎉 CI Pipeline ejecutado exitosamente"
+
+  # ── TRABAJO 2: Verificar Estilo (En Paralelo) ───────────────
+  lint:
+    name: lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Checkout del código
+        uses: actions/checkout@v4
+        
+      - name: 📏 Verificar líneas de más de 80 caracteres
+        run: |
+          echo "Buscando líneas que superen los 80 caracteres..."
+          awk 'length > 80 {print "Línea muy larga en la línea " NR ": " $0; exit 1}' test.sh
+          echo "✅ ¡Perfecto! Ninguna línea supera los 80 caracteres."
+
