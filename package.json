@@ -1,0 +1,7 @@
+{
+  "name": "mi-proyecto",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "node -e \"console.log('Tests OK en Node', process.version)\""
+  }
+}
