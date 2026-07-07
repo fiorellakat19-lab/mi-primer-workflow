@@ -9,7 +9,7 @@ on:
   pull_request:
     branches:
       - main          # también en PRs hacia main
-
+  workflow_dispatch: # ◄── Agrega esta línea exacta (debe terminar en dos puntos)
 # ── JOBS: los trabajos a ejecutar ─────────────────────────────
 jobs:
 
