@@ -1,6 +1,7 @@
 # Agrega esto al inicio del README.md:
 
-![CI Pipeline](https://github.com/TU_USUARIO/mi-primer-workflow/actions/workflows/ci.yml/badge.svg)
+![CI Pipeline](https://github.com/fiorellakat19@gmail.com/mi-primer-workflow/actions/workflows/ci.yml/badge.svg)
+
 
 # El badge se verá así en GitHub:
 [ CI Pipeline passing ]   ← verde si todo está bien
