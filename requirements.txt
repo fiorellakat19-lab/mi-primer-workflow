@@ -6,3 +6,6 @@ pytz==2024.1
 
 # Componente seguro para manejo de entornos y variables
 python-dotenv==1.0.1
+
+# Librería para ejecutar las pruebas unitarias en el pipeline
+pytest==8.1.1
