@@ -13,9 +13,8 @@ on:
           - staging
           - production
         default: development
-
       version:                   # Input tipo texto libre
-        description: Versión a desplegar (ej: v1.2.3)
+        description: 'Versión a desplegar (ej: v1.2.3)'
         required: true
         type: string
         default: v1.0.0
