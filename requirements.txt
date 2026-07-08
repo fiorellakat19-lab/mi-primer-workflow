@@ -1,0 +1,8 @@
+# Librería para realizar peticiones HTTP (esencial para interactuar con APIs)
+requests==2.32.3
+
+# Librería para manejar fechas y zonas horarias de forma segura
+pytz==2024.1
+
+# Componente seguro para manejo de entornos y variables
+python-dotenv==1.0.1
