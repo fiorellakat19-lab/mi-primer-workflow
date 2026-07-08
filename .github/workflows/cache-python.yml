@@ -1,0 +1,33 @@
+name: CI con Caché (Python)
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: ⚙️ Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      # La clave usa el hash de requirements.txt
+      # Si el archivo no cambia → caché reutilizada (FAST ⚡)
+      # Si el archivo cambia  → nueva caché creada (SLOW 🐢 primera vez)
+      - name: 📦 Restaurar caché pip
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: pip-${{ runner.os }}-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            pip-${{ runner.os }}-
+
+      - name: ⬇️ Instalar dependencias
+        run: pip install -r requirements.txt
+
+      - name: 🧪 Ejecutar tests
+        run: python -m pytest
