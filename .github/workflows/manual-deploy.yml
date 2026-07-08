@@ -1,0 +1,52 @@
+name: Deploy Manual
+
+on:
+  workflow_dispatch:            # Trigger manual
+    inputs:
+
+      ambiente:                  # Input tipo selección
+        description: ¿Dónde desplegar?
+        required: true
+        type: choice
+        options:
+          - development
+          - staging
+          - production
+        default: development
+
+      version:                   # Input tipo texto libre
+        description: Versión a desplegar (ej: v1.2.3)
+        required: true
+        type: string
+        default: v1.0.0
+
+      dry_run:                   # Input tipo checkbox
+        description: Modo prueba (no despliega de verdad)
+        required: false
+        type: boolean
+        default: false
+
+jobs:
+  deploy:
+    name: Deploy ${{ inputs.version }} → ${{ inputs.ambiente }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 📋 Mostrar parámetros
+        run: |
+          echo "🎯 Ambiente: ${{ inputs.ambiente }}"
+          echo "📦 Versión:  ${{ inputs.version }}"
+          echo "🧪 Dry run:  ${{ inputs.dry_run }}"
+
+      - name: 🚀 Desplegar (si no es dry run)
+        if: ${{ inputs.dry_run == false }}
+        run: |
+          echo "✅ Desplegando ${{ inputs.version }} en ${{ inputs.ambiente }}..."
+          echo "Deploy completado 🎉"
+
+      - name: 🧪 Simular deploy (dry run)
+        if: ${{ inputs.dry_run == true }}
+        run: |
+          echo "🧪 MODO DRY RUN — no se realizó ningún cambio"
+          echo "Simulación completada"
